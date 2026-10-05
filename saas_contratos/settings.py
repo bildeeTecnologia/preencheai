@@ -203,6 +203,10 @@ SUPABASE_SERVICE_ROLE_KEY = config("SUPABASE_SERVICE_ROLE_KEY", default="")
 SUPABASE_BUCKET_MODELOS = config("SUPABASE_BUCKET_MODELOS", default="modelos-contratos")
 SUPABASE_BUCKET_CONTRATOS = config("SUPABASE_BUCKET_CONTRATOS", default="contratos-gerados")
 
+# Keepalive: evita que o projeto Supabase entre em modo de pausa por inatividade
+SUPABASE_KEEPALIVE_ENABLED = config("SUPABASE_KEEPALIVE_ENABLED", default=True, cast=bool)
+SUPABASE_KEEPALIVE_INTERVAL_HOURS = config("SUPABASE_KEEPALIVE_INTERVAL_HOURS", default=12, cast=int)
+
 # Email (Brevo via SMTP)
 EMAIL_BACKEND = config(
     "EMAIL_BACKEND",

@@ -1,4 +1,6 @@
+import os
 import shutil
+import sys
 import warnings
 
 from django.apps import AppConfig
@@ -19,3 +21,10 @@ class CoreConfig(AppConfig):
                 RuntimeWarning,
                 stacklevel=2,
             )
+
+        is_gunicorn = "gunicorn" in sys.argv[0]
+        is_runserver_child = "runserver" in sys.argv and os.environ.get("RUN_MAIN") == "true"
+        if is_gunicorn or is_runserver_child:
+            from .keepalive import iniciar_keepalive
+
+            iniciar_keepalive()
